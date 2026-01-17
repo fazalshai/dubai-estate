@@ -52,7 +52,6 @@ function CrystalCore() {
   return (
     <mesh ref={meshRef}>
       <octahedronGeometry args={[1.5, 2]} />
-      {/* @ts-ignore */}
       <MeshTransmissionMaterial
         backside
         samples={16}
