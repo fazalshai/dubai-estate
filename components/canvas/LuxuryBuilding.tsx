@@ -3,7 +3,7 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { MeshTransmissionMaterial, Float, Sparkles, Center } from '@react-three/drei';
-import * => THREE from 'three';
+import * as THREE from 'three';
 
 function GoldSegments() {
   // Use deterministic generation instead of Math.random to satisfy React purity rules
@@ -52,7 +52,7 @@ function CrystalCore() {
   return (
     <mesh ref={meshRef}>
       <octahedronGeometry args={[1.5, 2]} />
-      {/* @ts-expect-error - MeshTransmissionMaterial issues with types */}
+      {/* @ts-ignore */}
       <MeshTransmissionMaterial
         backside
         samples={16}
