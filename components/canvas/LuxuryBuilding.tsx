@@ -3,16 +3,24 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { MeshTransmissionMaterial, Float, Sparkles, Center } from '@react-three/drei';
-import * as THREE from 'three';
+import * => THREE from 'three';
 
 function GoldSegments() {
-  // Generate random segments for a "Sci-Fi / Abstract" luxury tower look
+  // Use deterministic generation instead of Math.random to satisfy React purity rules
   const segments = useMemo(() => {
-    return Array.from({ length: 40 }).map((_, i) => ({
-      position: [Math.random() * 2 - 1, (i * 0.4) - 8, Math.random() * 2 - 1] as [number, number, number],
-      rotation: [0, Math.random() * Math.PI, 0] as [number, number, number],
-      scale: [0.8 + Math.random(), 0.5, 0.8 + Math.random()] as [number, number, number],
-    }));
+    return Array.from({ length: 40 }).map((_, i) => {
+      // Simple deterministic pseudo-random based on index
+      const hash = (n: number) => Math.sin(n) * 10000 - Math.floor(Math.sin(n) * 10000);
+      const r1 = hash(i);
+      const r2 = hash(i + 40);
+      const r3 = hash(i + 80);
+
+      return {
+        position: [r1 * 2 - 1, (i * 0.4) - 8, r2 * 2 - 1] as [number, number, number],
+        rotation: [0, r3 * Math.PI, 0] as [number, number, number],
+        scale: [0.8 + r1, 0.5, 0.8 + r2] as [number, number, number],
+      };
+    });
   }, []);
 
   return (
@@ -44,7 +52,7 @@ function CrystalCore() {
   return (
     <mesh ref={meshRef}>
       <octahedronGeometry args={[1.5, 2]} />
-      {/* @ts-ignore */}
+      {/* @ts-expect-error - MeshTransmissionMaterial issues with types */}
       <MeshTransmissionMaterial
         backside
         samples={16}
