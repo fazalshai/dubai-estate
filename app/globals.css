@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gold-50: #fdf8e6;
+  --color-gold-100: #fbf1cc;
+  --color-gold-200: #f7e299;
+  --color-gold-300: #f3d466;
+  --color-gold-400: #efc533;
+  --color-gold-500: #ebb700;
+  --color-gold-600: #bb9200;
+  --color-gold-700: #967500;
+  --color-gold-800: #7c6105;
+  --color-gold-900: #69510c;
+  --color-midnight-950: #0a0a0a;
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #f3d466;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(243, 212, 102, 0.1);
+}
+
+.glass-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(243, 212, 102, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(to right, #fbf1cc, #f3d466, #bb9200);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
